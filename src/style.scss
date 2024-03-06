@@ -1,17 +1,18 @@
 body{
   margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
-  background-color: cadetblue;
+  background-image: url("./calculator-background-2.jpg");
+  animation: scrollBackground 30s linear infinite;
 }
 
-.calculator{
-  background-color:black;
-  max-width: 500px;
-  overflow: hidden;
-  
+.calculator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  border: 3px solid rgb(138, 130, 17);
+  box-shadow: 0 0 100px #fff;
 }
 
 .buttons{
@@ -21,7 +22,7 @@ body{
   padding: 10px;
   padding-bottom: 3rem;
   padding-top: 10px;
-  text-align: center;
+  
 }
 
 .display{
@@ -29,8 +30,7 @@ body{
   height: 90px;
   overflow: hidden;
   background-color: black;
-&__text{
-  
+  &__text{
   background-color: black;
   height: 80%;
   width: 90%;
@@ -40,6 +40,7 @@ body{
 }
 
 .button{
+  
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 58px;
   height: 58px;
@@ -57,5 +58,20 @@ body{
   }
   &__orange{
     background-color: rgb(250, 141, 39);
+  }
+}
+.double-zero {
+  grid-column: span 2; 
+  border-radius: 30px; 
+  width: 100%;
+  
+}
+
+@keyframes scrollBackground {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0% 0;
   }
 }
