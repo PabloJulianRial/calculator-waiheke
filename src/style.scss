@@ -8,7 +8,7 @@ body{
 }
 
 .calculator{
-  background-color: red;
+  background-color:black;
   max-width: 500px;
   overflow: hidden;
   
@@ -18,19 +18,20 @@ body{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  padding: 25px;
+  padding: 10px;
+  padding-bottom: 3rem;
   padding-top: 10px;
   text-align: center;
 }
 
 .display{
   width: 100%;
-  height: 110px;
+  height: 90px;
   overflow: hidden;
-  background-color: red;
+  background-color: black;
 &__text{
   
-  background-color: grey;
+  background-color: black;
   height: 80%;
   width: 90%;
   margin: 0.5rem auto;
@@ -39,9 +40,9 @@ body{
 }
 
 .button{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 58px;
   height: 58px;
-  background-color: grey;
   border-radius: 50%;
   border: none;
   background-color: rgb(57, 52, 52);
@@ -50,4 +51,11 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  &__grey{
+    color: black;
+    background-color:rgb(149, 146, 146);
+  }
+  &__orange{
+    background-color: rgb(250, 141, 39);
+  }
 }
