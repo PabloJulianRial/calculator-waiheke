@@ -1,4 +1,4 @@
-body{
+body {
   margin: 0;
   height: 100vh;
   background-image: url("./calculator-background-2.jpg");
@@ -15,7 +15,7 @@ body{
   box-shadow: 0 0 100px #fff;
 }
 
-.buttons{
+.buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
@@ -24,33 +24,34 @@ body{
   padding-top: 10px;
 }
 
-.display{
+.disable {
+  pointer-events: none;
+}
+
+.display {
   box-shadow: none;
   width: 300px;
   height: 90px;
   overflow: hidden;
   background-color: black;
-  &__text{
-  outline: none;  
-  max-width: 100%;
-  background-color: black;
-  height: 100%;
-  width: 100%;
-  font-weight: 400;
-  padding: 0;
-  margin: 0 auto;
-  color:white;
-  font-size: 60px;
-  caret-color: transparent;
-  text-align: right;
-  
-}
-  
+  &__text {
+    outline: none;
+    max-width: 100%;
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    font-weight: 400;
+    padding: 0;
+    margin: 0 auto;
+    color: white;
+    font-size: 60px;
+    caret-color: transparent;
+    text-align: right;
+  }
 }
 
-.button{
-  
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.button {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   width: 58px;
   height: 58px;
   border-radius: 50%;
@@ -61,19 +62,18 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  &__grey{
+  &__grey {
     color: black;
-    background-color:rgb(149, 146, 146);
+    background-color: rgb(149, 146, 146);
   }
-  &__orange{
+  &__orange {
     background-color: rgb(250, 141, 39);
   }
 }
 .double-zero {
-  grid-column: span 2; 
-  border-radius: 30px; 
+  grid-column: span 2;
+  border-radius: 30px;
   width: 100%;
-  
 }
 
 @keyframes scrollBackground {
