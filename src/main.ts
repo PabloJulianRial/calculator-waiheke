@@ -35,23 +35,34 @@ if (
 ) {
   throw new Error("Issues with Selector");
 }
+let result: number = 0;
+let numberOne: number = 0;
+let numberTwo: number = 0;
+let decimalUsed: boolean = false;
+let numberOneUsed: boolean = false;
+let minusPressed: boolean = false;
+let timesPressed: boolean = false;
+let dividePressed: boolean = false;
+let plusPressed: boolean = false;
 
-let numberOne = 0;
-let numberTwo = 0;
-let decimalUsed = false;
+//----------------first input-------------------------------
 
 const handleClickNumbers = (event: Event) => {
   const target = event.currentTarget as HTMLElement;
 
   display.value += target.innerText;
 };
-
+//-------------------clear display----------------------------
 const handleClickClear = () => {
   display.value = "";
+  location.reload()
+
 };
 const handleClickClearEntry = () => {
   display.value = display.value.slice(0, -1);
 };
+
+//------------press operator-------------------------------------
 
 const handleClickOperator = () => {
   numberOne += Number(display.value);
@@ -60,11 +71,53 @@ const handleClickOperator = () => {
   decimal.className = "button button__number button__decimal";
 };
 
+
+//--------------------press decimal-------------------------------
+
 const handleDecimal = (event: Event) => {
   const target = event.currentTarget as HTMLElement;
   decimalUsed = true;
   target.className = "button button__number button__decimal disable";
 };
+const handleMinus = () => {
+  minusPressed = true;
+};
+const handlePlus = () => {
+  plusPressed = true;
+};
+const handleDivide = () => {
+  dividePressed = true;
+};
+const handleTimes = () => {
+  timesPressed = true;
+};
+
+const handleEquals = () => {
+  if (minusPressed) {
+    result = numberOne - Number(display.value);
+    display.value = result.toString();
+  }
+  if (plusPressed) {
+    result = numberOne + Number(display.value);
+    display.value = result.toString();
+  }
+  if (dividePressed) {
+    result = numberOne / Number(display.value);
+    display.value = result.toString();
+  }
+  if (timesPressed) {
+    result = numberOne * Number(display.value);
+    display.value = result.toString();
+  }
+};
+//-------------------event listeners--------------------------------
+minus.addEventListener("click", handleMinus);
+plus.addEventListener("click", handlePlus);
+divide.addEventListener("click", handleDivide);
+times.addEventListener("click", handleTimes);
+
+equals.addEventListener("click", handleEquals);
+
 decimal.addEventListener("click", handleDecimal);
 
 numbers.forEach((button) => {
