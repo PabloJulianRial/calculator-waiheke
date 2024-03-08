@@ -12,8 +12,9 @@ const operators =
   document.querySelectorAll<HTMLButtonElement>(".button__operator");
 
 //----------------------elements selected-------------------------------------
-
+const buttonsToDisable = document.querySelectorAll<HTMLButtonElement>(".button__toDisable")
 const display = document.querySelector<HTMLInputElement>(".display__text");
+const displaySmall = document.querySelector<HTMLInputElement>(".display__text__second");
 const clear = document.querySelector<HTMLButtonElement>(".button__clear");
 const clearEntry = document.querySelector<HTMLButtonElement>(
   ".button__clearEntry"
@@ -41,7 +42,8 @@ if (
   !times ||
   !equals ||
   !decimal ||
-  !percent
+  !percent ||
+  !displaySmall
 ) {
   throw new Error("Issues with Selector");
 }
@@ -61,6 +63,7 @@ let plusPressed: boolean = false;
 const handleClickNumbers = (event: Event) => {
   const target = event.currentTarget as HTMLElement;
   display.value += target.innerText;
+  displaySmall.value += target.innerText;
 };
 //-------------------clear display----------------------------
 const handleClickClear = () => {
@@ -69,6 +72,7 @@ const handleClickClear = () => {
 };
 const handleClickClearEntry = () => {
   display.value = display.value.slice(0, -1);
+  displaySmall.value = displaySmall.value.slice(0, -1);
 };
 
 //------------press operator-------------------------------------
@@ -83,6 +87,15 @@ const handleClickOperator = () => {
 //---------------------------HANDLERS----------------------------------//
 //---------------------------HANDLERS-----------------------------------//
 
+
+//---------------------disabling buttons------------------------------------------
+
+const handleButtonsToDisable = () =>{
+  buttonsToDisable.forEach(el =>{
+    el.classList.add("disable")
+  })
+}
+
 const handleDecimal = (event: Event) => {
   const target = event.currentTarget as HTMLElement;
   decimalUsed = true;
@@ -91,40 +104,52 @@ const handleDecimal = (event: Event) => {
 
 const handleMinus = () => {
   minusPressed = true;
+  displaySmall.value += "-"
+
 };
 const handlePlus = () => {
   plusPressed = true;
+  displaySmall.value += "+"
 };
 const handleDivide = () => {
   dividePressed = true;
+  displaySmall.value += "/"
 };
 const handleTimes = () => {
   timesPressed = true;
+  displaySmall.value += "×"
 };
 const handlePercent = () => {
   if (timesPressed) {
     result = numberOne/100 * Number(display.value);
     display.value = result.toString();
+    displaySmall.value = `${displaySmall.value}=${display.value}`
 }}
 
 const handleEquals = () => {
   if (minusPressed) {
     result = numberOne - Number(display.value);
     display.value = result.toString();
+    displaySmall.value = `${displaySmall.value}=${display.value}`
+    
   }
   if (plusPressed) {
     result = numberOne + Number(display.value);
     display.value = result.toString();
+    displaySmall.value = `${displaySmall.value}=${display.value}`
   }
   if (dividePressed) {
     result = numberOne / Number(display.value);
     display.value = result.toString();
+    displaySmall.value = `${displaySmall.value}=${display.value}`
   }
   if (timesPressed) {
     result = numberOne * Number(display.value);
     display.value = result.toString();
+    displaySmall.value = `${displaySmall.value}=${display.value}`
   }
- 
+  display.value = "";
+
 };
 //-------------------event listeners--------------------------------
 minus.addEventListener("click", handleMinus);
@@ -145,3 +170,11 @@ operators.forEach((button) => {
 
 clear.addEventListener("click", handleClickClear);
 clearEntry.addEventListener("click", handleClickClearEntry);
+
+buttonsToDisable.forEach((button) =>{
+  button.addEventListener("click", handleButtonsToDisable)
+})
+
+
+
+   

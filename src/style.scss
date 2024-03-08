@@ -5,7 +5,26 @@ body {
   animation: scrollBackground 30s linear infinite;
 }
 
+h1 {
+  padding-top: 2rem;
+  max-width: 50%;
+  margin: 0 auto;
+  color: rgb(167, 216, 51);
+  text-align: center;
+
+  font-size: 2rem;
+  font-family: "Orbitron", sans-serif;
+  box-shadow: #fff;
+  text-shadow: 2px 2px 100px rgba(255, 255, 0, 0.5),
+    -2px -2px 100px rgba(255, 255, 0, 0.5);
+  text-shadow: 2px 2px 114px rgba(238, 14, 10, 0.5),
+    -2px -2px 114px rgba(235, 5, 5, 0.5);
+
+  text-shadow: 4px 4px 102px rgba(255, 165, 0, 0.7),
+    -4px -4px 102px rgba(255, 165, 0, 0.7);
+}
 .calculator {
+  margin: 0 auto;
   position: absolute;
   padding-left: 0.35rem;
   top: 50%;
@@ -78,6 +97,9 @@ body {
   border-radius: 30px;
   width: 100%;
 }
+.display__text__second{
+  display: none;
+}
 
 @keyframes scrollBackground {
   from {
@@ -85,5 +107,53 @@ body {
   }
   to {
     background-position: 0% 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  h1 {
+    padding-top: 4rem;
+    font-size: 3.5rem;
+    font-family: "Orbitron", sans-serif;
+  }
+ 
+  .calculator {
+    top: 58%;
+  }
+
+  .display {
+    width: 370px;
+    height: 160px;
+  }
+
+  .display__text__second {
+    display: unset;
+    outline: none;
+    background-color: black;
+    height: 40%;
+    width: 100%;
+    font-weight: 400;
+    padding: 0;
+    margin: 0 auto;
+    border: none;
+    color: white;
+    font-size: 40px;
+    caret-color: transparent;
+    text-align: right;
+  }
+  .display__text{
+    height: 60%;
+  }
+
+
+  .button {
+    width: 80px;
+    height: 80px;
+    border-radius: 39px;
+    font-size: 2.5rem;
+  }
+  .double-zero {
+   border-radius: 39px;
+   width: 100%;
   }
 }
