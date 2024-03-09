@@ -52,7 +52,7 @@ if (
 
 let result: number = 0;
 let numberOne: number = 0;
-let decimalUsed: boolean = false;
+// let decimalUsed: boolean = false;
 let minusPressed: boolean = false;
 let timesPressed: boolean = false;
 let dividePressed: boolean = false;
@@ -80,7 +80,7 @@ const handleClickClearEntry = () => {
 const handleClickOperator = () => {
   numberOne += Number(display.value);
   display.value = "";
-  decimalUsed = false;
+  // decimalUsed = false;
   decimal.className = "button button__number button__decimal";
 };
 
@@ -98,7 +98,7 @@ const handleButtonsToDisable = () =>{
 
 const handleDecimal = (event: Event) => {
   const target = event.currentTarget as HTMLElement;
-  decimalUsed = true;
+  // decimalUsed = true;
   target.className = "button button__number button__decimal disable";
 };
 
