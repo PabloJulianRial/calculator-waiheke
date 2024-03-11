@@ -1,5 +1,5 @@
 ## SPACE CALCULATOR
-## Welcome to my calculator project1
+## Welcome to my calculator project
 I created this calculator app using TypeScript and SCSS as part of my _Nology training.
 The calculator in it's simplest form, for phones and tablets, can perform all operations of a regular calculator.
 For larger screens I added some extra functionality (for experts only).
