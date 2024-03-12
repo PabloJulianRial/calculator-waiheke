@@ -1,7 +1,7 @@
 import "./style.scss";
 //----------------after page loads the focus goes to display input-----------------
 window.onload = () => {
-  document.getElementById("input")?.focus();
+  document.getElementById("input1")?.focus();
 };
 //------------------NodeLists------------------------------------------------------
 
@@ -27,7 +27,9 @@ const times = document.querySelector<HTMLButtonElement>(".button__times");
 const equals = document.querySelector<HTMLButtonElement>(".button__equals");
 const decimal = document.querySelector<HTMLButtonElement>(".button__decimal");
 const percent = document.querySelector<HTMLButtonElement>(".button__percent");
-
+const signChange = document.querySelector<HTMLButtonElement>(".signChange");
+const input = document.querySelector<HTMLInputElement>("#input1");
+const round = document.querySelector<HTMLButtonElement>(".button__round")
 //-------------------------handles null values for selected elements-------------
 
 if (
@@ -44,7 +46,10 @@ if (
   !equals ||
   !decimal ||
   !percent ||
-  !displaySmall
+  !displaySmall ||
+  !signChange ||
+  !input ||
+  !round
 ) {
   throw new Error("Issues with Selector");
 }
@@ -57,9 +62,11 @@ let dividePressed: boolean = false;
 let plusPressed: boolean = false;
 //----------------first input-------------------------------------------------
 const handleClickNumbers = (event: Event) => {
-  const target = event.currentTarget as HTMLElement;
-  display.value += target.innerText;
-  displaySmall.value += target.innerText;
+  if (input.value.length < input.maxLength) {
+    const target = event.currentTarget as HTMLElement;
+    display.value += target.innerText;
+    displaySmall.value += target.innerText;
+  }
 };
 //-------------------clear display-------------------------------------------
 const handleClickClear = () => {
@@ -83,6 +90,7 @@ const handleButtonsToDisable = () => {
 };
 const handleDecimal = (event: Event) => {
   const target = event.currentTarget as HTMLElement;
+
   target.className = "button button__number button__decimal disable";
 };
 
@@ -105,8 +113,8 @@ const handleTimes = () => {
 const handlePercent = () => {
   if (timesPressed) {
     result = (numberOne / 100) * Number(display.value);
-    display.value = result.toString();
-    displaySmall.value = `${displaySmall.value}=${display.value}`;
+    display.value = `${result.toString()}%`;
+    displaySmall.value = `${displaySmall.value}%`;
   }
 };
 
@@ -114,24 +122,31 @@ const handleEquals = () => {
   if (minusPressed) {
     result = numberOne - Number(display.value);
     display.value = result.toString();
-    displaySmall.value = `${displaySmall.value}=${display.value}`;
+   
   }
   if (plusPressed) {
     result = numberOne + Number(display.value);
     display.value = result.toString();
-    displaySmall.value = `${displaySmall.value}=${display.value}`;
+   
   }
   if (dividePressed) {
     result = numberOne / Number(display.value);
     display.value = result.toString();
-    displaySmall.value = `${displaySmall.value}=${display.value}`;
+   
   }
   if (timesPressed) {
     result = numberOne * Number(display.value);
     display.value = result.toString();
-    displaySmall.value = `${displaySmall.value}=${display.value}`;
+   
   }
-  display.value = "";
+  
+};
+const handleRound = () =>{
+  display.value = Math.round(result).toString()
+} 
+
+const handleSignChange = () => {
+  display.value = `${(Number(display.value) * -1).toString()}`;
 };
 //-------------------event listeners----------------------------------------
 minus.addEventListener("click", handleMinus);
@@ -143,6 +158,8 @@ decimal.addEventListener("click", handleDecimal);
 percent.addEventListener("click", handlePercent);
 clear.addEventListener("click", handleClickClear);
 clearEntry.addEventListener("click", handleClickClearEntry);
+signChange.addEventListener("click", handleSignChange);
+round.addEventListener("click", handleRound)
 numbers.forEach((button) => {
   button.addEventListener("click", handleClickNumbers);
 });
