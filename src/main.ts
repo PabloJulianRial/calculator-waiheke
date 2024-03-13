@@ -4,7 +4,7 @@ window.onload = () => {
   document.getElementById("input1")?.focus();
 };
 //------------------NodeLists------------------------------------------------------
-
+const allButtons = document.querySelectorAll<HTMLButtonElement>(".button")
 const numbers = document.querySelectorAll<HTMLButtonElement>(".button__number");
 const operators =
   document.querySelectorAll<HTMLButtonElement>(".button__operator");
@@ -30,6 +30,14 @@ const percent = document.querySelector<HTMLButtonElement>(".button__percent");
 const signChange = document.querySelector<HTMLButtonElement>(".signChange");
 const input = document.querySelector<HTMLInputElement>("#input1");
 const round = document.querySelector<HTMLButtonElement>(".button__round")
+const square = document.querySelector<HTMLButtonElement>(".button__square")
+const cube = document.querySelector<HTMLButtonElement>(".button__cube")
+const root = document.querySelector<HTMLButtonElement>(".button__root")
+const fraction = document.querySelector<HTMLButtonElement>(".button__fraction")
+const rightBracket = document.querySelector<HTMLButtonElement>(".button__rightBracket")
+const leftBracket = document.querySelector<HTMLButtonElement>(".button__leftBracket")
+const memoryOne = document.querySelector<HTMLButtonElement>(".button__memoryOne")
+const memoryTwo = document.querySelector<HTMLButtonElement>(".button__memoryTwo")
 //-------------------------handles null values for selected elements-------------
 
 if (
@@ -49,7 +57,7 @@ if (
   !displaySmall ||
   !signChange ||
   !input ||
-  !round
+  !round || !square || !root || !cube || !fraction|| !rightBracket || !leftBracket || !memoryOne || !memoryTwo
 ) {
   throw new Error("Issues with Selector");
 }
@@ -66,11 +74,14 @@ const handleClickNumbers = (event: Event) => {
     const target = event.currentTarget as HTMLElement;
     display.value += target.innerText;
     displaySmall.value += target.innerText;
+    
+    
   }
 };
 //-------------------clear display-------------------------------------------
 const handleClickClear = () => {
   display.value = "";
+  displaySmall.value = ""
   location.reload();
 };
 const handleClickClearEntry = () => {
@@ -118,6 +129,34 @@ const handlePercent = () => {
   }
 };
 
+const handleSquare = () => {
+  const squareResult = Number(display.value)** 2;
+  display.value = squareResult.toString()
+  displaySmall.value = `${displaySmall.value}²`
+    };
+ const handleCube = () => {
+  const cubeResult = Number(display.value)** 3;
+  display.value = cubeResult.toString()
+  displaySmall.value = `${displaySmall.value}³`
+    };
+ const handleRoot = () => {
+  const rootResult = Math.sqrt(Number(display.value));
+  display.value = rootResult.toString()
+  displaySmall.value = `${displaySmall.value}√`
+    };
+
+    const handleLeftBracket = () =>{
+     
+      buttonsToDisable.forEach((el) => {
+        el.classList.remove("disable");
+      });
+    }
+ const handleRightBracket = () =>{
+   buttonsToDisable.forEach((el) => {
+     el.classList.remove("disable");
+   });
+ }
+
 const handleEquals = () => {
   if (minusPressed) {
     result = numberOne - Number(display.value);
@@ -141,13 +180,20 @@ const handleEquals = () => {
   }
   
 };
-const handleRound = () =>{
-  display.value = Math.round(result).toString()
-} 
+const handleRound = () => {
+  display.value = result.toFixed(3);
+};
 
 const handleSignChange = () => {
   display.value = `${(Number(display.value) * -1).toString()}`;
 };
+
+const handleFraction = () =>{
+  allButtons.forEach((el) =>{
+  el.style.backgroundColor = `rgb(${Math.ceil(Math.random() * 255)}, ${Math.ceil(Math.random() * 255)}, ${Math.ceil(Math.random() * 255)})`
+})
+
+}
 //-------------------event listeners----------------------------------------
 minus.addEventListener("click", handleMinus);
 plus.addEventListener("click", handlePlus);
@@ -159,7 +205,13 @@ percent.addEventListener("click", handlePercent);
 clear.addEventListener("click", handleClickClear);
 clearEntry.addEventListener("click", handleClickClearEntry);
 signChange.addEventListener("click", handleSignChange);
-round.addEventListener("click", handleRound)
+round.addEventListener("click", handleRound);
+square.addEventListener("click", handleSquare);
+cube.addEventListener("click", handleCube);
+root.addEventListener("click", handleRoot);
+rightBracket.addEventListener("click", handleRightBracket)
+leftBracket.addEventListener("click", handleLeftBracket)
+fraction.addEventListener("click", handleFraction)
 numbers.forEach((button) => {
   button.addEventListener("click", handleClickNumbers);
 });
