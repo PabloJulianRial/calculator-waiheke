@@ -73,7 +73,7 @@ h1 {
 }
 
 .button {
-  &__fraction{
+  &__fraction {
     background-color: fuchsia;
   }
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -165,7 +165,6 @@ h1 {
     width: 400px;
   }
   .button {
-   
     width: 75px;
     height: 75px;
   }
@@ -207,13 +206,12 @@ h1 {
     width: 100%;
   }
 
-  .button__fraction{
+  .button__fraction {
     background-color: rgb(82, 207, 82);
   }
   .extra__button {
     background-color: rgb(82, 113, 82);
     font-size: 35px;
-    
   }
   .display {
     width: 460px;

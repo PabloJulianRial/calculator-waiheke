@@ -4,9 +4,12 @@ window.onload = () => {
   document.getElementById("input1")?.focus();
 };
 //------------------NodeLists------------------------------------------------------
-const orangeButtons = document.querySelectorAll<HTMLButtonElement>(".button__orange")
-const extraButtons = document.querySelectorAll<HTMLButtonElement>(".extra__button")
-const greyButtons = document.querySelectorAll<HTMLButtonElement>(".button__grey")
+const orangeButtons =
+  document.querySelectorAll<HTMLButtonElement>(".button__orange");
+const extraButtons =
+  document.querySelectorAll<HTMLButtonElement>(".extra__button");
+const greyButtons =
+  document.querySelectorAll<HTMLButtonElement>(".button__grey");
 const allButtons = document.querySelectorAll<HTMLButtonElement>(".button");
 const numbers = document.querySelectorAll<HTMLButtonElement>(".button__number");
 const operators =
@@ -91,10 +94,10 @@ let plusPressed: boolean = false;
 let memory: number = 0;
 let memoryPressed: boolean = false;
 
-let numberClicked: boolean = false
+let numberClicked: boolean = false;
 //----------------first input-------------------------------------------------
 const handleClickNumbers = (event: Event) => {
-  numberClicked = true
+  numberClicked = true;
   if (input.value.length < input.maxLength) {
     const target = event.currentTarget as HTMLElement;
     display.value += target.innerText;
@@ -109,35 +112,30 @@ const handleClickClear = () => {
     el.classList.remove("disable");
   });
   numberOne = 0;
- numbers.forEach((b)=>{
-  b.style.backgroundColor = "rgb(57, 52, 52)"
- })
- orangeButtons.forEach((b)=>{
-  b.style.backgroundColor = " rgb(250, 141, 39)"
- })
- extraButtons.forEach((b)=>{
-  b.style.backgroundColor = " rgb(82, 113, 82)"
- })
- greyButtons.forEach((b)=>{
-  b.style.backgroundColor = " rgb(149, 146, 146)"
- })
- wand.style.backgroundColor = "rgb(82, 207, 82)"
-
- 
+  numbers.forEach((b) => {
+    b.style.backgroundColor = "rgb(57, 52, 52)";
+  });
+  orangeButtons.forEach((b) => {
+    b.style.backgroundColor = " rgb(250, 141, 39)";
+  });
+  extraButtons.forEach((b) => {
+    b.style.backgroundColor = " rgb(82, 113, 82)";
+  });
+  greyButtons.forEach((b) => {
+    b.style.backgroundColor = " rgb(149, 146, 146)";
+  });
+  wand.style.backgroundColor = "rgb(82, 207, 82)";
+  location.reload();
 };
 const handleBackspace = () => {
   display.value = display.value.slice(0, -1);
   displaySmall.value = displaySmall.value.slice(0, -1);
 };
 const handleClickOperator = () => {
-  if(numberClicked){
-      
+  if (numberClicked) {
     numberOne += Number(display.value);
     display.value = "";
-
   }
- 
-  
 };
 //---------------------------HANDLERS----------------------------------------
 const handleButtonsToDisable = () => {
@@ -146,29 +144,33 @@ const handleButtonsToDisable = () => {
   });
 };
 const handleDecimal = () => {
-  decimal.classList.add("disable")
+  decimal.classList.add("disable");
 };
 
 const handleMinus = () => {
-  if(numberClicked){
-  minusPressed = true;
-  displaySmall.value += "-";
-  }}
+  if (numberClicked) {
+    minusPressed = true;
+    displaySmall.value += "-";
+  }
+};
 const handlePlus = () => {
-  if(numberClicked){
-  plusPressed = true;
-  displaySmall.value += "+";
-}}
+  if (numberClicked) {
+    plusPressed = true;
+    displaySmall.value += "+";
+  }
+};
 const handleDivide = () => {
-  if(numberClicked){
-  dividePressed = true;
-  displaySmall.value += "/";
-}}
+  if (numberClicked) {
+    dividePressed = true;
+    displaySmall.value += "/";
+  }
+};
 const handleTimes = () => {
-  if(numberClicked){
-  timesPressed = true;
-  displaySmall.value += "×";
-}}
+  if (numberClicked) {
+    timesPressed = true;
+    displaySmall.value += "×";
+  }
+};
 const handlePercent = () => {
   if (timesPressed) {
     result = (numberOne / 100) * Number(display.value);
@@ -195,46 +197,43 @@ const handleRoot = () => {
 
 const handleLeftBracket = () => {
   buttonsToDisable.forEach((el) => {
-   
     el.classList.remove("disable");
   });
-  display.value += "("
+  display.value += "(";
   displaySmall.value += "(";
 };
 const handleRightBracket = () => {
-  
   buttonsToDisable.forEach((el) => {
     el.classList.remove("disable");
   });
-  display.value += ")"
-  displaySmall.value += ")"
+  display.value += ")";
+  displaySmall.value += ")";
 };
 
 const handleEquals = () => {
   if (minusPressed) {
     result = numberOne - Number(display.value);
     display.value = result.toString();
-    numberOne = 0
+    numberOne = 0;
   }
   if (plusPressed) {
     result = numberOne + Number(display.value);
     display.value = result.toString();
-    numberOne = 0
+    numberOne = 0;
   }
   if (dividePressed) {
     result = numberOne / Number(display.value);
     display.value = result.toString();
-    numberOne = 0
+    numberOne = 0;
   }
   if (timesPressed) {
     result = numberOne * Number(display.value);
     display.value = result.toString();
-    numberOne = 0
+    numberOne = 0;
   }
   buttonsToDisable.forEach((el) => {
     el.classList.remove("disable");
   });
-  
 };
 const handleRound = () => {
   display.value = result.toFixed(3);
@@ -248,22 +247,20 @@ const handleMemory = () => {
   if (!memoryPressed) {
     memoryPressed = true;
     memory = Number(display.value);
-    display.value = ""
-    displaySmall.value = ""
-    
-  }
-  else{
-    display.value = memory.toString()
-    displaySmall.value = memory.toString()
+    display.value = "";
+    displaySmall.value = "";
+  } else {
+    display.value = memory.toString();
+    displaySmall.value = memory.toString();
   }
 };
 
-const handleClearMemory = () =>{
-memoryPressed = false
-memory = 0
-display.value = ""
-displaySmall.value = ""
-}
+const handleClearMemory = () => {
+  memoryPressed = false;
+  memory = 0;
+  display.value = "";
+  displaySmall.value = "";
+};
 const handleWand = () => {
   allButtons.forEach((el) => {
     el.style.backgroundColor = `rgb(${Math.ceil(
